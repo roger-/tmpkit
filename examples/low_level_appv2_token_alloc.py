@@ -21,6 +21,11 @@ def main() -> int:
     parser.add_argument(
         "--debug-raw", action="store_true", help="Pretty-print raw AppV2 payloads"
     )
+    parser.add_argument(
+        "--assoc-only",
+        action="store_true",
+        help="Only perform TMP ASSOC handshake and exit",
+    )
     args = parser.parse_args()
 
     target = make_target(
@@ -35,6 +40,10 @@ def main() -> int:
             session.assoc(
                 timeout_seconds=float(args.timeout_seconds), send_client_hello=True
             )
+            if args.assoc_only:
+                print("ASSOC OK")
+                return 0
+
             token_alloc_raw = session.request_appv2(
                 op_code=DecoAppV2Opcode.TMP_APPV2_OP_TOKEN_ALLOC,
                 payload=b"",

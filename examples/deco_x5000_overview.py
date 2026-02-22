@@ -43,21 +43,8 @@ def main() -> int:
                 case "status":
                     firmware = client.get_firmware()
                     status = client.get_status()
-                    print(
-                        "Firmware: "
-                        f"hardware_version={firmware.hardware_version!r} "
-                        f"model={firmware.model!r} "
-                        f"firmware_version={firmware.firmware_version!r}"
-                    )
-                    print(
-                        "Status: "
-                        f"clients_total={status.clients_total} "
-                        f"wired_total={status.wired_total} "
-                        f"wifi_clients_total={status.wifi_clients_total} "
-                        f"guest_clients_total={status.guest_clients_total} "
-                        f"iot_clients_total={status.iot_clients_total}"
-                    )
-                    print(f"devices={len(status.devices)}")
+                    print(firmware)
+                    print(status)
                 case "clients" | "devices":
                     devices = client.get_devices()
                     for d in devices:

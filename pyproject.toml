@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tmpkit"
+version = "0.1.0"
+description = "Minimal TMP framing + association handshake"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "tmpkit contributors" }]
+dependencies = [
+    "macaddress>=2.0.2",
+    "paramiko>=3.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
